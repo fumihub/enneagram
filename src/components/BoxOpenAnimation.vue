@@ -46,7 +46,7 @@
               <v-row justify="center">
                 <v-col>
                   <v-overlay :z-index="zIndex" :value="overlay">
-                    <v-btn class="white--text" color="teal" to="/question">
+                    <v-btn class="white--text" color="success" @click="result">
                       <h1 class="font-weight-bold">診断結果へ</h1>
                     </v-btn>
                   </v-overlay>
@@ -175,7 +175,13 @@ export default {
       overlay: this.overlay,
       zIndex: 0,
       keys: ["key_1", "key_2", "key_3"],
+      questions: [],
+      answers: [],
     };
+  },
+  created() {
+    // queryStringsから受け取った値をdataへ
+    this.answers = this.$route.query.answers;
   },
   mounted() {
     this.overlay = false;
@@ -203,5 +209,13 @@ export default {
       });
     }
   },
+  methods: {
+    result() {
+      this.$router.push({
+        path: "/result",
+        query: { answers: this.answers },
+      });
+    }
+  }
 };
 </script>
