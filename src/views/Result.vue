@@ -13,6 +13,13 @@
               <p>{{ questions[index].options[item - 1].option }}</p>
             </v-col>
           </v-row>
+          <v-row>
+            <v-col align="center" class="pb-12 col-12">
+              <v-btn x-large @click="answer" color="success" to="/" dark
+                >タイトルへ</v-btn
+              >
+            </v-col>
+          </v-row>
         </div>
       </div>
     </v-row>

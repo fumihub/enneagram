@@ -75,17 +75,17 @@ export default {
       const selectOption = this.radioGroup;
       // 回答を配列に格納
       this.answered.push(selectOption);
-      if (this.answered.length > 2) {
-        // 3回目の回答で結果画面に遷移する
-        this.$router.push({
-          path: "/result",
-          query: { answers: this.answered },
-        });
-      } else {
+      if (this.answered.length < this.questions.length) {
         // 次の質問を設定
         this.setQuestions();
         // 選択の初期化
         this.radioGroup = 1;
+      } else {
+        // 最終問題の回答で結果画面に遷移する
+        this.$router.push({
+          path: "/animation",
+          query: { answers: this.answered },
+        });
       }
     },
   },
