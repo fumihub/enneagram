@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import About from "../views/About";
+import Animation from "../views/Animation";
 import Question from "../views/Question";
 import Result from "../views/Result";
 
@@ -25,9 +25,9 @@ const routes = [
     props: true,
   },
   {
-    path: "/about",
-    name: "About",
-    component: About,
+    path: "/animation",
+    name: "Animation",
+    component: Animation,
   },
 ];
 
