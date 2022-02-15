@@ -1,15 +1,15 @@
 <template>
-  <hello-world />
+  <enneagram-home />
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld";
+import EnneagramHome from "../components/EnneagramHome";
 
 export default {
   name: "Home",
 
   components: {
-    HelloWorld,
+    EnneagramHome,
   },
 };
 </script>
