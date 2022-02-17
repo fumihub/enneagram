@@ -33,7 +33,7 @@ export default {
     // queryStringsから受け取った値をdataへ
     this.answers = this.$route.query.answers;
     // 問題をWebAPIから取得
-    axios.get("/data/questions.json").then((response) => {
+    axios.get("/enneagram/data/questions.json").then((response) => {
       this.questions = response.data.questions;
     });
   },
@@ -56,7 +56,7 @@ p {
   max-width: 700px;
   min-height: 400px;
   width: 100%;
-  background-image: url("/image/question_background.png");
+  background-image: url("/enneagram/image/question_background.png");
   background-size: 100% 100%;
 }
 </style>
