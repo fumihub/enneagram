@@ -37,7 +37,8 @@ import axios from "axios";
 export default {
   created() {
     // 問題をWebAPIから取得
-    axios.get("/data/questions.json").then((response) => {
+    // public配下は/enneagram/でホストされる
+    axios.get("/enneagram/data/questions.json").then((response) => {
       this.questions = response.data.questions;
       if (this.questions.length) {
         this.setQuestions();
@@ -100,7 +101,7 @@ p {
   max-width: 700px;
   min-height: 400px;
   width: 100%;
-  background-image: url("/image/question_background.png");
+  background-image: url("/enneagram/image/question_background.png");
   background-size: 100% 100%;
 }
 </style>
