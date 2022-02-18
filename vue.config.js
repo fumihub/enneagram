@@ -1,4 +1,4 @@
 module.exports = {
   transpileDependencies: ["vuetify"],
-  publicPath: "/enneagram/"
+  publicPath: "/enneagram/",
 };
