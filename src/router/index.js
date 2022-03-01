@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Animation from "../views/Animation";
 import Question from "../views/Question";
 import Result from "../views/Result";
+import TypeExplain from "../views/TypeExplain";
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,11 @@ const routes = [
     path: "/animation",
     name: "Animation",
     component: Animation,
+  },
+  {
+    path: "/typeExplain",
+    name: "TypeExplain",
+    component: TypeExplain,
   },
 ];
 

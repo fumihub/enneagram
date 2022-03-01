@@ -46,7 +46,12 @@
               <v-row justify="center">
                 <v-col>
                   <v-overlay :z-index="zIndex" :value="overlay">
-                    <v-btn class="white--text" color="success" @click="result">
+                    <v-btn
+                      class="white--text"
+                      color="success"
+                      dark
+                      @click="result"
+                    >
                       <h1 class="font-weight-bold">診断結果へ</h1>
                     </v-btn>
                   </v-overlay>
