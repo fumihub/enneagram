@@ -6,8 +6,8 @@
         <v-row>
           <v-col align="center" justify="center" class="col-12 col-sm-6">
             <v-img
-              :src="require('../assets/typeGraph.png')"
-              :lazy-src="require('../assets/typeGraph.png')"
+              :src="require('../assets/typeGraphAnimal.png')"
+              :lazy-src="require('../assets/typeGraphAnimal.png')"
               class="typeGraph"
               @load="load()"
             />
@@ -101,12 +101,11 @@ export default {
 }
 
 .type-col {
-  // display: flex;
-  // align-items: stretch;
+  display: flex;
+  align-items: stretch;
   & .cover-slide {
     position: relative;
     overflow: hidden;
-    // display: flex;
 
     &::after {
       content: "";
