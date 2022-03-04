@@ -40,7 +40,6 @@
 <script>
 export default {
   name: "HomeSection",
-
   data() {
     return {
       title: "エニアグラム診断",

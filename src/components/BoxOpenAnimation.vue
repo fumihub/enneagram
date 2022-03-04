@@ -46,7 +46,12 @@
               <v-row justify="center">
                 <v-col>
                   <v-overlay :z-index="zIndex" :value="overlay">
-                    <v-btn class="white--text" color="success" @click="result">
+                    <v-btn
+                      class="white--text"
+                      color="success"
+                      dark
+                      @click="result"
+                    >
                       <h1 class="font-weight-bold">診断結果へ</h1>
                     </v-btn>
                   </v-overlay>
@@ -59,6 +64,59 @@
     </v-container>
   </section>
 </template>
+
+<script>
+export default {
+  name: "AnimationSection",
+  data() {
+    return {
+      overlay: this.overlay,
+      zIndex: 0,
+      keys: ["key_1", "key_2", "key_3"],
+      questions: [],
+      answers: [],
+    };
+  },
+  created() {
+    // queryStringsから受け取った値をdataへ
+    this.answers = this.$route.query.answers;
+  },
+  mounted() {
+    this.overlay = false;
+    // overlayを関数の中で変更するために、thisを格納
+    const _that = this;
+    const key1 = document.querySelector(".key_1");
+    opacityChange(key1, 1);
+    const key2 = document.querySelector(".key_2");
+    opacityChange(key2, 1);
+    const key3 = document.querySelector(".key_3");
+    opacityChange(key3, 1);
+    const fadeOut = document.querySelector(".fade-out");
+    opacityChange(fadeOut, 0);
+    const fadeIn = document.querySelector(".fade-in");
+    opacityChange(fadeIn, 1);
+    overlayChange(fadeIn, true);
+    function opacityChange(element, opacity) {
+      element.addEventListener("animationend", function () {
+        element.style.opacity = opacity;
+      });
+    }
+    function overlayChange(element, overlay) {
+      element.addEventListener("animationend", function () {
+        _that.overlay = overlay;
+      });
+    }
+  },
+  methods: {
+    result() {
+      this.$router.push({
+        path: "/result",
+        query: { answers: this.answers },
+      });
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .visible {
@@ -166,56 +224,3 @@
   }
 }
 </style>
-
-<script>
-export default {
-  name: "AnimationSection",
-  data() {
-    return {
-      overlay: this.overlay,
-      zIndex: 0,
-      keys: ["key_1", "key_2", "key_3"],
-      questions: [],
-      answers: [],
-    };
-  },
-  created() {
-    // queryStringsから受け取った値をdataへ
-    this.answers = this.$route.query.answers;
-  },
-  mounted() {
-    this.overlay = false;
-    // overlayを関数の中で変更するために、thisを格納
-    const _that = this;
-    const key1 = document.querySelector(".key_1");
-    opacityChange(key1, 1);
-    const key2 = document.querySelector(".key_2");
-    opacityChange(key2, 1);
-    const key3 = document.querySelector(".key_3");
-    opacityChange(key3, 1);
-    const fadeOut = document.querySelector(".fade-out");
-    opacityChange(fadeOut, 0);
-    const fadeIn = document.querySelector(".fade-in");
-    opacityChange(fadeIn, 1);
-    overlayChange(fadeIn, true);
-    function opacityChange(element, opacity) {
-      element.addEventListener("animationend", function () {
-        element.style.opacity = opacity;
-      });
-    }
-    function overlayChange(element, overlay) {
-      element.addEventListener("animationend", function () {
-        _that.overlay = overlay;
-      });
-    }
-  },
-  methods: {
-    result() {
-      this.$router.push({
-        path: "/result",
-        query: { answers: this.answers },
-      });
-    }
-  }
-};
-</script>

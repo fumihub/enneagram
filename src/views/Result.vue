@@ -15,9 +15,18 @@
           </v-row>
           <v-row>
             <v-col align="center" class="pb-12 col-12">
-              <v-btn x-large @click="answer" color="success" to="/" dark
-                >タイトルへ</v-btn
+              <v-btn x-large color="success" to="/" dark class="ma-3">
+                タイトルへ
+              </v-btn>
+              <v-btn
+                x-large
+                color="primary"
+                to="/typeExplain"
+                dark
+                class="ma-3"
               >
+                9タイプ確認
+              </v-btn>
             </v-col>
           </v-row>
         </div>
