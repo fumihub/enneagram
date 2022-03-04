@@ -3,9 +3,7 @@
     <v-container class="home-container">
       <v-row class="enneagram-explain text-center">
         <v-col class="my-3">
-          <h1 class="display-1 font-weight-bold my-3">
-            エニアグラム診断
-          </h1>
+          <h1 class="display-1 font-weight-bold my-3">エニアグラム診断</h1>
           <p class="detail-text font-weight-regular">
             エニアグラム診断とは、(説明)
           </p>
@@ -16,12 +14,7 @@
       </v-row>
       <v-row class="text-center">
         <v-col class="mb-4">
-          <v-btn
-            text
-            height="150"
-            width="200"
-            class="start-btn"
-            to="/question">
+          <v-btn text height="150" width="200" class="start-btn" to="/question">
             <h1 class="font-weight-bold">診断開始</h1>
           </v-btn>
         </v-col>
@@ -30,7 +23,15 @@
   </section>
 </template>
 
-<style  lang="scss" scoped>
+<script>
+export default {
+  name: "HomeSection",
+
+  data: () => ({}),
+};
+</script>
+
+<style lang="scss" scoped>
 .enneagram-explain {
   background: url("../assets/paper.png");
   background-size: cover;
@@ -41,19 +42,9 @@
   height: 100%;
 }
 
-.start-btn{
+.start-btn {
   background: url("../assets/closedBox.png");
   background-size: contain;
   background-repeat: no-repeat;
 }
 </style>
-
-<script>
-export default {
-  name: "HomeSection",
-
-  data: () => ({
-    
-  }),
-};
-</script>

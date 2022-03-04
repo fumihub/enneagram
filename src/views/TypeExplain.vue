@@ -56,7 +56,6 @@ export default {
     // タイプをWebAPIから取得
     axios.get("/enneagram/data/types.json").then((response) => {
       this.types = response.data.types;
-      console.log(this.types);
     });
   },
   mounted() {},
