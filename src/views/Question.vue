@@ -102,7 +102,6 @@ export default {
       } else {
         this.$router.push({
           path: "/",
-          query: { answers: this.answered },
         });
       }
     },
