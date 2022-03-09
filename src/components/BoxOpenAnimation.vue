@@ -1,7 +1,7 @@
 <template>
   <section class="animation-section">
     <v-container class="animation-container">
-      <v-row justify="center" align="center">
+      <v-row justify="center" align="center" class="mt-10">
         <v-col justify="center" align="center">
           <div class="bg">
             <v-row>
@@ -149,15 +149,15 @@ export default {
 .key-area {
   & .key_1 {
     opacity: 0;
-    animation: slideIn 1.5s ease 2s 1 normal;
+    animation: slideIn 1.5s ease 1s 1 normal;
   }
   & .key_2 {
     opacity: 0;
-    animation: slideIn 1.5s ease 3.5s 1 normal;
+    animation: slideIn 1.5s ease 2.5s 1 normal;
   }
   & .key_3 {
     opacity: 0;
-    animation: slideIn 1.5s ease 5s 1 normal;
+    animation: slideIn 1.5s ease 4s 1 normal;
   }
 }
 
@@ -179,14 +179,14 @@ export default {
     position: absolute;
     z-index: 1;
     opacity: 1;
-    animation: fadeOut 2s ease 6s 1 normal;
+    animation: fadeOut 2s ease 5s 1 normal;
   }
 
   & .fade-in {
     position: absolute;
     z-index: 2;
     opacity: 0;
-    animation: fadeIn 2s ease 6s 1 normal;
+    animation: fadeIn 2s ease 5s 1 normal;
   }
 }
 

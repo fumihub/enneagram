@@ -1,7 +1,7 @@
 <template>
   <section class="home-section">
     <v-container class="home-container">
-      <v-row>
+      <v-row class="mt-10">
         <v-col align="center" justify="center">
           <v-row class="enneagram-explain text-center">
             <v-col class="my-3">
