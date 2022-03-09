@@ -24,6 +24,9 @@
               <v-btn x-large @click="answer" :color="btnType" dark>{{
                 answeredButtonLabel
               }}</v-btn>
+              <v-btn x-large class="ml-4" @click="back" color="grey lighten-1">
+                戻る
+              </v-btn>
             </v-col>
           </v-row>
         </v-row>
@@ -85,6 +88,20 @@ export default {
         // 最終問題の回答で結果画面に遷移する
         this.$router.push({
           path: "/animation",
+          query: { answers: this.answered },
+        });
+      }
+    },
+    /**
+     * 戻るボタンの動作
+     */
+    back() {
+      if (this.answered.length > 0) {
+        this.answered.pop();
+        this.setQuestions();
+      } else {
+        this.$router.push({
+          path: "/",
           query: { answers: this.answered },
         });
       }
