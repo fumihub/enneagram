@@ -9,7 +9,6 @@
               :src="require('../assets/typeGraphAnimal.png')"
               :lazy-src="require('../assets/typeGraphAnimal.png')"
               class="typeGraph"
-              @load="load()"
             />
           </v-col>
           <v-col class="col-12 col-sm-6">
@@ -26,7 +25,11 @@
           >
             <v-card class="cover-slide">
               <div class="card">
-                <v-img v-bind:src="item.src" v-bind:lazy-src="item.src" />
+                <v-img
+                  v-bind:src="item.src"
+                  v-bind:lazy-src="item.src"
+                  @load="load()"
+                />
                 <h2 class="ma-3 text-left" v-html="item.type"></h2>
                 <v-card-text>
                   <p class="text-left">
@@ -56,39 +59,44 @@ export default {
     // タイプをWebAPIから取得
     axios.get("/enneagram/data/types.json").then((response) => {
       this.types = response.data.types;
+      this.$nextTick(() => {
+        // DOMが更新されてからスクロールを監視
+        this.els = document.querySelectorAll(".cover-slide");
+        const options = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0,
+          once: true,
+        };
+        const cb = function (entries, observer) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("inview");
+              if (options.once) {
+                observer.unobserve(entry.target);
+              }
+            }
+          });
+        };
+
+        // InterSectionObserverをインスタンス化
+        this.io = new IntersectionObserver(cb, options);
+        // // 「cover-slide」クラスの要素を監視
+        // els.forEach((el) => io.observe(el));
+      });
     });
   },
-  mounted() {},
   data() {
     return {
       types: [],
+      els: [],
+      io: null,
     };
   },
   methods: {
     load() {
-      // 画像がダウンロードされてからスクロールを監視
-      const els = document.querySelectorAll(".cover-slide");
-      const options = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0,
-        once: true,
-      };
-      const cb = function (entries, observer) {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("inview");
-            if (options.once) {
-              observer.unobserve(entry.target);
-            }
-          }
-        });
-      };
-
-      // InterSectionObserverをインスタンス化
-      const io = new IntersectionObserver(cb, options);
       // 「cover-slide」クラスの要素を監視
-      els.forEach((el) => io.observe(el));
+      this.els.forEach((el) => this.io.observe(el));
     },
   },
 };
