@@ -9,7 +9,6 @@
               :src="require('../assets/typeGraphAnimal.png')"
               :lazy-src="require('../assets/typeGraphAnimal.png')"
               class="typeGraph"
-              @load="load()"
             />
           </v-col>
           <v-col class="col-12 col-sm-6">
@@ -24,9 +23,9 @@
             justify="center"
             class="col-12 col-sm-6 type-col"
           >
-            <v-card class="cover-slide">
+            <v-card :id="`slide-${i}`" class="cover-slide">
               <div class="card">
-                <v-img v-bind:src="item.src" v-bind:lazy-src="item.src" />
+                <v-img :src="item.src" :lazy-src="item.src" @load="load(i)" />
                 <h2 class="ma-3 text-left" v-html="item.type"></h2>
                 <v-card-text>
                   <p class="text-left">
@@ -57,38 +56,37 @@ export default {
     axios.get("/enneagram/data/types.json").then((response) => {
       this.types = response.data.types;
     });
+
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0,
+      once: true,
+    };
+    const cb = function (entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("inview");
+          if (options.once) {
+            observer.unobserve(entry.target);
+          }
+        }
+      });
+    };
+    // InterSectionObserverをインスタンス化
+    this.io = new IntersectionObserver(cb, options);
   },
-  mounted() {},
   data() {
     return {
       types: [],
+      io: null,
     };
   },
   methods: {
-    load() {
-      // 画像がダウンロードされてからスクロールを監視
-      const els = document.querySelectorAll(".cover-slide");
-      const options = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0,
-        once: true,
-      };
-      const cb = function (entries, observer) {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("inview");
-            if (options.once) {
-              observer.unobserve(entry.target);
-            }
-          }
-        });
-      };
-
-      // InterSectionObserverをインスタンス化
-      const io = new IntersectionObserver(cb, options);
+    load(i) {
       // 「cover-slide」クラスの要素を監視
-      els.forEach((el) => io.observe(el));
+      const slideElement = this.$el.querySelector(`#slide-${i}`);
+      this.io.observe(slideElement);
     },
   },
 };
