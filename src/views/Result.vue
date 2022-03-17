@@ -23,9 +23,7 @@
             </v-col>
           </v-row>
           <h2 class="pa-3 text-left" v-html="type.type"></h2>
-          <p class="pa-3 text-left">
-            {{ type.text }}
-          </p>
+          <p class="pa-3 text-left" v-html="type.text"></p>
         </v-card>
         <v-row>
           <v-col align="center" class="pb-12 col-12">
