@@ -28,9 +28,7 @@
                 <v-img :src="item.src" :lazy-src="item.src" @load="load(i)" />
                 <h2 class="ma-3 text-left" v-html="item.type"></h2>
                 <v-card-text>
-                  <p class="text-left">
-                    {{ item.text }}
-                  </p>
+                  <p class="text-left" v-html="item.text"></p>
                 </v-card-text>
               </div>
             </v-card>
