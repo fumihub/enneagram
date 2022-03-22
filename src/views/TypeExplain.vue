@@ -1,6 +1,6 @@
 <template>
   <v-container class="px-6">
-    <v-row align="center" justify="center">
+    <v-row align="center" justify="center" class="mt-10">
       <h1 class="display-1 font-weight-bold my-3">9タイプ解説</h1>
       <v-col cols="12">
         <v-row>
@@ -12,7 +12,7 @@
             />
           </v-col>
           <v-col class="col-12 col-sm-6">
-            <p></p>
+            <p>{{ explain }}</p>
           </v-col>
         </v-row>
         <v-row>
@@ -78,6 +78,10 @@ export default {
     return {
       types: [],
       io: null,
+      explain: `エニアグラム診断とは、人間が生まれ持った気質を9つのタイプに分類したもので、
+                それぞれのタイプの特徴、陥りやすいパターン、その対処法などがわかります。
+                自己成長の地図と言われ、自分のタイプの気質の輝きを知り、
+                そこを伸ばすことで成功や幸せを掴むことを目的とします。`,
     };
   },
   methods: {
